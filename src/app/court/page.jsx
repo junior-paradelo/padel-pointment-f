@@ -4,8 +4,6 @@ import { getCourts } from "./court.api";
 
 export default async function CourtItem() {
     const courts = await getCourts();
-    console.log(courts);
-
     return (
         <div className="flex gap-4 items-center justify-center min-h-screen bg-background p-6">
             {courts.map((court) => (
