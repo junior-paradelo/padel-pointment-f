@@ -4,31 +4,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useRouter } from "next/navigation";
+
+import { loginUser } from "./login.api";
 
 export default function LoginForm() {
+    const router = useRouter();
     const { register, handleSubmit } = useForm();
     const onSubmit = async (data) => {
-        const { email, password } = data;
-        fetch(`${process.env.NEXT_PUBLIC_URL_API}/auth/login`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ email, password }),
-        })
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                localStorage.setItem("padel_pointment_auth_token", data.token);
-            })
-            .catch((error) => {
-                console.error("Error:", error);
-                // Handle error (e.g., show error message)
-            });
+        const result = await loginUser(data.email, data.password);
+        if (result?.token) {
+            localStorage.setItem(`${process.env.NEXT_PUBLIC_LOCALSTORAGE_TOKEN}`, result.token);
+            router.push("/");
+        }
     };
 
     return (
