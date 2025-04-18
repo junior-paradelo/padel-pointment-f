@@ -9,7 +9,7 @@ export default function LoginForm() {
     const { register, handleSubmit } = useForm();
     const onSubmit = async (data) => {
         const { email, password } = data;
-        fetch("http://localhost:3005/api/auth/login", {
+        fetch(`${process.env.NEXT_PUBLIC_URL_API}/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
