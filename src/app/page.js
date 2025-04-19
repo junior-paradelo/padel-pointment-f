@@ -27,7 +27,7 @@ export default async function Home() {
             <section id="courts" className="p-6 mt-24">
                 <div className="flex gap-4 items-start justify-center min-h-screen bg-background">
                     {courts.map((court) => (
-                        <Card key={court.id} className="w-full max-w-sm p-6 flex flex-col gap-2 hover:animate-tilt">
+                        <Card key={court.id} className="w-full max-w-sm p-6 flex flex-col gap-2">
                             <h3 className="text-2xl font-bold">{court.name}</h3>
                             <p className="text-sm ">
                                 <span className="font-medium text-foreground">Location:</span> {court.location}

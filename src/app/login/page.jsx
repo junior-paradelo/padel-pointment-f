@@ -13,8 +13,7 @@ export default function LoginForm() {
     const { register, handleSubmit } = useForm();
     const onSubmit = async (data) => {
         const result = await loginUser(data.email, data.password);
-        if (result?.token) {
-            localStorage.setItem(`${process.env.NEXT_PUBLIC_LOCALSTORAGE_TOKEN}`, result.token);
+        if (result[process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME]) {
             router.push("/");
         }
     };
