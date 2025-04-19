@@ -3,8 +3,7 @@ import { Mail, Star } from "lucide-react";
 import Link from "next/link";
 
 import { buttonVariants } from "@/components/ui/button";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { CourtCard } from "@/app/court/card";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 import { getCourts } from "./court/court.api";
@@ -78,27 +77,12 @@ export default async function Home() {
                     </div>
                 </div>
             </section>
-            <section id="courts" className="p-6 mt-24">
-                <div className="flex gap-4 items-start justify-center min-h-screen bg-background">
+            <section id="courts" className="p-6">
+                <div className="flex flex-wrap gap-4 items-start justify-center min-h-screen bg-background">
                     {courts.map((court) => (
-                        <Card key={court.id} className="w-full max-w-sm p-6 flex flex-col gap-2">
-                            <h3 className="text-2xl font-bold">{court.name}</h3>
-                            <p className="text-sm ">
-                                <span className="font-medium text-foreground">Location:</span> {court.location}
-                            </p>
-                            <p className="text-sm ">
-                                <span className="font-medium text-foreground">Price:</span>{" "}
-                                <span className="font-semibold">$20/hour</span>
-                            </p>
-                            <p className="text-sm ">
-                                <span className="font-medium text-foreground">Rating:</span> 4.5/5
-                            </p>
-                            <p className="text-sm  flex-grow">
-                                <span className="font-medium text-foreground">Description:</span> A great place to play
-                                padel.
-                            </p>
-                            <Button className="mt-4 w-full">Book now</Button>
-                        </Card>
+                        <div className="w-64 h-80" key={court.id}>
+                            <CourtCard name={court.name} location={court.location} price={27} className="h-full" />
+                        </div>
                     ))}
                     {courts.length === 0 && <p className="">No courts available at the moment.</p>}
                 </div>
