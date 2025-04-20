@@ -1,14 +1,21 @@
 "use client";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
+import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from "lucide-react";
 
 import { loginUser } from "./login.api";
 
 export default function LoginForm() {
+    const [showPassword, setShowPassword] = useState(false);
+    const togglePasswordVisibility = () => {
+        setShowPassword((prev) => !prev);
+    };
+
     const router = useRouter();
     const { register, handleSubmit } = useForm();
     const onSubmit = async (data) => {
@@ -29,27 +36,30 @@ export default function LoginForm() {
                     <CardContent>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="flex flex-col gap-6">
-                                <div className="grid gap-2">
-                                    <Label htmlFor="email">Email</Label>
+                                <div className="relative flex items-center rounded-md border focus-within:ring-1 focus-within:ring-ring pl-2">
+                                    <MailIcon className="h-5 w-5 text-muted-foreground" />
                                     <Input
-                                        id="email"
                                         type="email"
-                                        placeholder="m@example.com"
-                                        required
-                                        {...register("email")}
+                                        placeholder="Email"
+                                        className="border-0 focus-visible:ring-0 shadow-none"
+                                        {...register("email", { required: true })}
                                     />
                                 </div>
-                                <div className="grid gap-2">
-                                    <div className="flex items-center">
-                                        <Label htmlFor="password">Password</Label>
-                                        <a
-                                            href="#"
-                                            className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                                        >
-                                            Forgot your password?
-                                        </a>
-                                    </div>
-                                    <Input id="password" type="password" required {...register("password")} />
+                                <div className="relative flex items-center rounded-md border focus-within:ring-1 focus-within:ring-ring px-2">
+                                    <LockIcon className="h-5 w-5 text-muted-foreground" />
+                                    <Input
+                                        type={showPassword ? "text" : "password"}
+                                        placeholder="Password"
+                                        className="border-0 focus-visible:ring-0 shadow-none"
+                                        {...register("password", { required: true })}
+                                    />
+                                    <button onClick={togglePasswordVisibility}>
+                                        {showPassword ? (
+                                            <EyeOffIcon className="h-5 w-5 text-muted-foreground" />
+                                        ) : (
+                                            <EyeIcon className="h-5 w-5 text-muted-foreground" />
+                                        )}
+                                    </button>
                                 </div>
                                 <Button type="submit" className="w-full">
                                     Login
