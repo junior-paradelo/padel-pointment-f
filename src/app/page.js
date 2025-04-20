@@ -1,12 +1,10 @@
-import { Mail, Star } from "lucide-react";
+import { Star } from "lucide-react";
 
-import Link from "next/link";
-
-import { buttonVariants } from "@/components/ui/button";
 import { CourtCard } from "@/app/court/card";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
 import { getCourts } from "./court/court.api";
+import Navbar from "./navigate/navbar";
 
 export default async function Home() {
     const courts = await getCourts();
@@ -43,12 +41,7 @@ export default async function Home() {
     };
     return (
         <>
-            <nav id="navbar" className="flex justify-between items-center p-4 bg-background border-b">
-                <h1 className="text-4xl font-bold">Padel Pointment</h1>
-                <Link href="/login" className={buttonVariants({ variant: "secondary" })}>
-                    <Mail className="mr-2 h-4 w-4" /> Login with Email
-                </Link>
-            </nav>
+            <Navbar />
             <section className="py-32">
                 <div className="container text-center">
                     <div className="mx-auto flex max-w-screen-lg flex-col gap-6">
