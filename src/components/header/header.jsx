@@ -15,7 +15,7 @@ const navigationMenuItems = [
     { title: "Blog", href: "#blog", icon: Rss },
 ];
 
-function Navbar() {
+function Header() {
     return (
         <nav id="navbar" className="flex justify-between items-center p-4 bg-background border-b">
             <h1 className="text-4xl font-bold">Padel Pointment</h1>
@@ -40,4 +40,4 @@ function Navbar() {
     );
 }
 
-export default Navbar;
+export { Header };

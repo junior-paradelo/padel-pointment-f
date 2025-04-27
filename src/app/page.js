@@ -1,10 +1,11 @@
 import { Star } from "lucide-react";
 
-import { CourtCard } from "@/app/court/card";
+import { CourtCard } from "@/components/court/card";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 
-import { getCourts } from "./court/court.api";
-import Navbar from "./navigate/navbar";
+import { getCourts } from "@/components/court/court.api";
+
+import { Header } from "@/components/header/header";
 
 export default async function Home() {
     const courts = await getCourts();
@@ -41,7 +42,7 @@ export default async function Home() {
     };
     return (
         <>
-            <Navbar />
+            <Header />
             <section className="py-32">
                 <div className="container text-center">
                     <div className="mx-auto flex max-w-screen-lg flex-col gap-6">
