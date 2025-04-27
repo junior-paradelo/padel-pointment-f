@@ -1,14 +1,10 @@
 "use client";
+import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from "lucide-react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { useRouter } from "next/navigation";
-import { EyeIcon, EyeOffIcon, LockIcon, MailIcon } from "lucide-react";
-
-import { loginUser } from "./login.api";
+import { handleLogin } from "@/actions/index.js";
 
 export default function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
@@ -16,13 +12,9 @@ export default function LoginForm() {
         setShowPassword((prev) => !prev);
     };
 
-    const router = useRouter();
-    const { register, handleSubmit } = useForm();
-    const onSubmit = async (data) => {
-        const result = await loginUser(data.email, data.password);
-        if (result[process.env.NEXT_PUBLIC_ACCESS_TOKEN_NAME]) {
-            router.push("/");
-        }
+    const handleSubmit = (formData) => {
+        const { email, password } = Object.fromEntries(formData);
+        handleLogin(email, password);
     };
 
     return (
@@ -34,7 +26,7 @@ export default function LoginForm() {
                         <CardDescription>Enter your email below to login to your account</CardDescription>
                     </CardHeader>
                     <CardContent>
-                        <form onSubmit={handleSubmit(onSubmit)}>
+                        <form action={handleSubmit}>
                             <div className="flex flex-col gap-6">
                                 <div className="relative flex items-center rounded-md border focus-within:ring-1 focus-within:ring-ring pl-2">
                                     <MailIcon className="h-5 w-5 text-muted-foreground" />
@@ -42,7 +34,7 @@ export default function LoginForm() {
                                         type="email"
                                         placeholder="Email"
                                         className="border-0 focus-visible:ring-0 shadow-none"
-                                        {...register("email", { required: true })}
+                                        name="email"
                                     />
                                 </div>
                                 <div className="relative flex items-center rounded-md border focus-within:ring-1 focus-within:ring-ring px-2">
@@ -51,7 +43,7 @@ export default function LoginForm() {
                                         type={showPassword ? "text" : "password"}
                                         placeholder="Password"
                                         className="border-0 focus-visible:ring-0 shadow-none"
-                                        {...register("password", { required: true })}
+                                        name="password"
                                     />
                                     <button onClick={togglePasswordVisibility}>
                                         {showPassword ? (
