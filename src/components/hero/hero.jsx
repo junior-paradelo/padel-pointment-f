@@ -34,7 +34,7 @@ function Hero() {
         },
     };
     return (
-        <section className="py-32">
+        <section className="py-24">
             <div className="container text-center">
                 <div className="mx-auto flex max-w-screen-lg flex-col gap-6">
                     <h1 className="text-3xl font-extrabold lg:text-6xl">{props.heading}</h1>

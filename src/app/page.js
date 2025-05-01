@@ -1,3 +1,4 @@
+import { About } from "@/components/about/about";
 import { CourtCard } from "@/components/court/card";
 import { getCourts } from "@/components/court/court.api";
 import { Header } from "@/components/header/header";
@@ -10,6 +11,7 @@ export default async function Home() {
         <>
             <Header />
             <Hero />
+            <About />
             <section id="courts" className="p-6">
                 <div className="flex flex-wrap gap-4 items-start justify-center min-h-screen bg-background">
                     {courts.map((court) => (
