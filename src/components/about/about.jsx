@@ -23,7 +23,7 @@ const props = {
         {
             title: "Innovation",
             description:
-                "ncorporates advanced features such as integrated secure payments, geolocation to find nearby courts, and creating matches or tournaments from the app itself. Allows you to organize open matches, register for events, and follow results in real time, enriching the user experience.",
+                "Incorporates advanced features such as integrated secure payments, geolocation to find nearby courts, and creating matches or tournaments from the app itself. Allows you to organize open matches, register for events, and follow results in real time, enriching the user experience.",
             icon: <WandSparkles className="size-6" />,
         },
         {
@@ -45,7 +45,7 @@ function About() {
     return (
         <section className="py-24">
             <div className="container">
-                <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+                <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3 animate-zoom-in animate-duration-slow">
                     {props.reasons.map((reason, i) => (
                         <div key={i} className="flex flex-col">
                             <div className="mb-5 flex size-16 items-center justify-center rounded-full bg-accent">

@@ -34,7 +34,7 @@ function Hero() {
         },
     };
     return (
-        <section className="py-24">
+        <section className="py-24 animate-fade-in-left animate-duration-slow">
             <div className="container text-center">
                 <div className="mx-auto flex max-w-screen-lg flex-col gap-6">
                     <h1 className="text-3xl font-extrabold lg:text-6xl">{props.heading}</h1>
@@ -43,7 +43,7 @@ function Hero() {
                 <div className="mx-auto mt-10 flex w-fit flex-col items-center gap-4 sm:flex-row">
                     <span className="mx-4 inline-flex items-center -space-x-4">
                         {props.reviews.avatars.map((avatar, index) => (
-                            <Avatar key={index} className="size-14 border">
+                            <Avatar key={index} className="size-14 border hover:animate-jiggle">
                                 <AvatarImage src={avatar.src} alt={avatar.alt} />
                             </Avatar>
                         ))}

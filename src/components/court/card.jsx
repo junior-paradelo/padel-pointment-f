@@ -26,7 +26,7 @@ function CourtCard({ name, location, price }) {
                 </Tooltip>
             </CardContent>
             <CardFooter className="mt-2 flex justify-between">
-                <Button size="lg" className="w-full">
+                <Button size="lg" className="w-full cursor-pointer">
                     Book now
                 </Button>
             </CardFooter>
