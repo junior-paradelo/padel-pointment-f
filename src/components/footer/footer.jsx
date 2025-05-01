@@ -19,7 +19,7 @@ function Footer() {
                     &copy; {new Date().getFullYear()} All rights reserved.
                 </a>
                 <span class="inline-flex justify-center mt-4 space-x-5 sm:ml-auto sm:mt-0 sm:justify-start">
-                    <a title="Email" class="text-gray-400 hover:text-gray-500">
+                    <a title="Email" class="text-gray-400 hover:text-gray-500" href="mailto:juniorparadelo@gmail.com">
                         <span class="sr-only"></span>
                         <Mails />
                     </a>
